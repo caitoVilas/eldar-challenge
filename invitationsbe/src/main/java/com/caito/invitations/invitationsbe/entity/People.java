@@ -25,8 +25,7 @@ public class People {
     @Column(nullable = false, length = 50)
     private String surname;
     private LocalDate dateOfBird;
-    @Column(length = 11)
+    @Column(unique = true, length = 11)
     private String dni;
     private boolean deleted;
-    private boolean invited;
 }
