@@ -2,19 +2,36 @@
 <div class="container">
   <hr>
   <div class="row">
-    <div class="col md-12 text-center">
+    <div class="col-md-12 col-lg-6 text-center">
       <h3>Personas</h3>
       <hr>
-      <div cdkDropList class="example-list text-center" (cdkDropListDropped)="drop($event)" >
+      <div cdkDropList class="example-list text-center" 
+           id="list-person" 
+           [cdkDropListData]="listPerson"
+           [cdkDropListConnectedTo]="['list-invited']"
+           (cdkDropListDropped)="drop($event)" >
         <div class="example-box text-center" *ngFor="let person of listPerson" cdkDrag>{{person.name + ' ' + person.surname}}</div>
       </div>
     </div>
-    <div class="col md-12 text-center">
+    <div class="col-md-12 col-lg-6 text-center">
       <h3>Invitados</h3>
       <hr>
-      <div cdkDropList class="example-list text-center" (cdkDropListDropped)="drop($event)" >
-        <div class="example-box text-center" *ngFor="let guest of guests" cdkDrag>{{guest}}</div>
+      <div cdkDropList class="example-list text-center" 
+           id="list-invited" 
+           [cdkDropListData]="guests"
+           [cdkDropListConnectedTo]="['list-person']"
+           (cdkDropListDropped)="drop($event)" >
+        <div class="example-box text-center" *ngFor="let guest of guests" cdkDrag>{{guest.name + ' ' + guest.surname}}</div>
       </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6 text-center">
+      <button class="btn btn-secondary mx-1">Agregar Persona</button>
+      <button class="btn btn-secondary mx-1">Modificar/Eliminar</button>
+    </div>
+    <div class="col-6 text-center">
+      <button class="btn btn-success">Confirmar</button>
     </div>
   </div>
 </div>
